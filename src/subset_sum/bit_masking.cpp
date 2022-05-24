@@ -19,6 +19,21 @@ namespace assignment {
     // 3. Подсчет суммы текущего подмножества, сохранение индексов подмножества с целевой суммой в результат
     // Tips: можно пропустить итерацию, если сумма текущего подмножества стала больше целевой суммы
 
+    for (int mask = 0; mask < num_subsets; mask++) {
+      auto subset = mask2indices(set, mask);
+      int sum = 0;
+
+      for (int i = 0; i < subset.size(); i++) {
+        sum += set[subset[i]];
+        if (sum > target_sum) {
+          break;
+        }
+      }
+      if (sum == target_sum) {
+        indices.push_back(subset);
+      }
+    }
+
     return indices;
   }
 
